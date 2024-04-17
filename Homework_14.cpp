@@ -154,7 +154,7 @@ void change_pos(int** &matrix, size_t n, size_t m = 0)
 	}
 	for (size_t i = 0; i < n; ++i)
 	{
-		for (size_t j = i + 1; j < m; ++j) // Start from i + 1 to avoid swapping elements twice
+		for (size_t j = i + 1; j < m; ++j)
 		{
 			std::swap(matrix[i][j], matrix[j][i]);
 		}
