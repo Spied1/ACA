@@ -85,10 +85,10 @@ public:
 			arr[i] = nullptr;
 		}
 
-		//delete[] arr;
+		delete[] arr; // problem
 		arr = nullptr;
-		//n = 0;
-		//m = 0;
+		n = 0;
+		m = 0;
 	}
 
 	const matrix& operator=(const matrix& other)
@@ -100,24 +100,27 @@ public:
 		return *this;
 	}
 
-	const matrix& operator+(const matrix& other)
+	const matrix operator+(const matrix& other)
 	{
-		if (other.n == 0 && other.m == 0)
+		
+		if (n != other.n || m != other.m)
 		{
-			return *this;
+			matrix Temp(n, m);
+			return Temp;
 		}
-		if (other.n != n && other.m != m)
+		
+
+		
+		matrix Temp(n, m);
+		for (size_t i = 0; i < n; ++i)
 		{
-			return *this;
-		}
-		for (int i = 0; i < n; ++i)
-		{
-			for (int j = 0; j < m; ++j)
+			for (size_t j = 0; j < m; ++j)
 			{
-				arr[i][j] += other.arr[i][j];
+				Temp.arr[i][j] = arr[i][j] + other.arr[i][j];
 			}
 		}
-		return *this;
+
+		return Temp;
 	}
 
 	void transposition()
@@ -157,7 +160,10 @@ public:
 
 	~matrix()
 	{
-		clear();
+		if (n != 0)
+		{
+			clear();
+		}
 	}
 };
 
@@ -174,22 +180,23 @@ int main()
 	matrix first(n, m);
 	matrix second(n, m);
 	first.init_matrix();
-	first.print();
+	
 
 	std::cout << std::endl << std::endl;
 
 	second.init_matrix();
-	second.print();
-
-	std::cout << std::endl << std::endl;
 	
-	matrix third(n, m);
+
 	//first.clear();
 
-	third = first + second;
+	matrix third = first + second;
+	first.print();
+	std::cout << std::endl << std::endl;
+	second.print();
+	std::cout << std::endl << std::endl;
+	
 	third.print();
 	//first.transposition();
 	//first.print();
-
 	return 0;
 }
