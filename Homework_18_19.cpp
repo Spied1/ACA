@@ -89,6 +89,7 @@ public:
 		}
 		return *this;
 	}
+
 	bool add_weapon(const std::string& weapon)
 	{
 		bool bRes = false;
@@ -119,6 +120,7 @@ public:
 	~Arsenal()
 	{
 		delete[] m_weapons;
+		m_weapons = nullptr;
 	}
 };
 
@@ -185,11 +187,15 @@ public:
 class Aeroport
 {
 private:
-	size_t m_places;
-	size_t m_occupied;
+	size_t m_places = 0;
+	size_t m_occupied = 0;
 	Plane** m_planes;
 
 public:
+	Aeroport()
+	{
+		m_planes = nullptr;
+	}
 	Aeroport(size_t places) :
 		m_places(places),
 		m_occupied(0)
@@ -277,6 +283,12 @@ public:
 			std::cout << std::endl << std::endl << std::endl;
 		}
 	}
+
+	~Aeroport()
+	{
+		delete[] m_planes;
+		m_planes = nullptr;
+	}
 };
 int main()
 {
@@ -284,6 +296,7 @@ int main()
 	Engine engine2(151, "Boeing", "CFM56-7B ENGINE");
 	Arsenal arsenal(3);
 	Arsenal arsenal2(0);
+	arsenal = arsenal2;
 	arsenal.add_weapon("M61A2 Vulcan");
 	arsenal.add_weapon("AIM-120 AMRAAM");
 	arsenal.add_weapon("JDAM");
