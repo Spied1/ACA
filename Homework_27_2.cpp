@@ -22,10 +22,6 @@ public:
 
 	Array(const Array& other)
 	{
-		if (this->m_size > other.m_size)
-		{
-			delete[] this->m_arr;
-		}
 		this->m_size = other.m_size;
 		
 		this->m_arr = new int[m_size];
