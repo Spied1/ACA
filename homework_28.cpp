@@ -16,7 +16,8 @@ public:
 	}
 };
 
-class zoo {
+class zoo 
+{
 private:
     static bool m_created;
     std::vector<animal> m_zoo;
