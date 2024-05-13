@@ -16,24 +16,33 @@ public:
 	}
 };
 
-class zoo
-{
+class zoo {
 private:
-	std::vector<animal> m_zoo;
+    static bool m_created;
+    std::vector<animal> m_zoo;
+    static zoo instance;
+
+    zoo() = default;
 
 public:
-	static zoo& object()
-	{
-		static zoo instance;
+    static zoo& object() 
+    {
+        if (!m_created) 
+        {
+            instance = zoo();
+            m_created = true;
+        }
+        return instance;
+    }
 
-		return instance;
-	}
-
-	void add(const animal& temp)
-	{
-		m_zoo.push_back(temp);
-	}
+    void add(const animal& temp) 
+    {
+        m_zoo.push_back(temp);
+    }
 };
+
+bool zoo::m_created = false;
+zoo zoo::instance;
 
 int main()
 {
