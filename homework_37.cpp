@@ -37,24 +37,17 @@ namespace nstd
 				return;
 			}
 
-			try
-			{
-				T* temp = new T[new_size]{};
+			
+			T* temp = new T[new_size]{};
 
-				for (size_t i = 0; i < m_size; ++i)
-				{
-					temp[i] = m_arr[i];
-				}
-
-				delete[] m_arr;
-				m_arr = temp;
-				m_capacity = new_size;
-			}
-			catch (std::bad_alloc& err)
+			for (size_t i = 0; i < m_size; ++i)
 			{
-				std::cerr << "Not Enough Memmory: " << err.what() << std::endl;
-				throw;
+				temp[i] = m_arr[i];
 			}
+
+			delete[] m_arr;
+			m_arr = temp;
+			m_capacity = new_size;
 		}
 
 		void push_back(const T& element)
