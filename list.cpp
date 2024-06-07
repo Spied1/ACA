@@ -193,7 +193,6 @@ namespace nstd
 
 		void pop_front()
 		{
-			node<T>* newNode = new node<T>(val);
 			if (m_head == nullptr)
 			{
 				m_head = newNode;
