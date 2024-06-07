@@ -181,6 +181,26 @@ void merge(std::vector<int> a, std::vector<int> b, std::vector<int>& c)
 	}
 }
 
+template<typename T>
+void bubble_sort(nstd::vector<T>& vec)
+{
+	if (vec.size() == 0)
+	{
+		return;
+	}
+
+	for (int i = 0; i < vec.size(); ++i)
+	{
+		for (int j = 0; j < vec.size() - 1; ++j)
+		{
+			if (vec[j] > vec[j + 1])
+			{
+				std::swap(vec[j], vec[j + 1]);
+			}
+		}
+	}
+}
+
 void merge_sort(std::vector<int>& vec)
 {
 	if (vec.size() <= 1)
